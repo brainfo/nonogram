@@ -94,13 +94,13 @@ document.addEventListener('DOMContentLoaded', () => {
             const cueContainer = document.createElement('div');
             cueContainer.classList.add('cue-container');
             if (type === 'col') {
-                cueLine.forEach(cue => {
-                    const cueSpan = document.createElement('span');
-                    cueSpan.textContent = cue;
-                    cueContainer.appendChild(cueSpan);
-                });
+                const cueSpan = document.createElement('span');
+                cueSpan.innerHTML = cueLine.join('<br>');
+                cueContainer.appendChild(cueSpan);
             } else {
-                cueContainer.textContent = cueLine.join(' ');
+                const cueSpan = document.createElement('span');
+                cueSpan.textContent = cueLine.join(' ');
+                cueContainer.appendChild(cueSpan);
             }
             container.appendChild(cueContainer);
         });
