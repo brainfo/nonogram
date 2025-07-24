@@ -55,8 +55,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const colCues = getCues(matrix, 'col');
         const rowCues = getCues(matrix, 'row');
 
-        displayCues(colCues, colCuesContainer);
-        displayCues(rowCues, rowCuesContainer);
+        displayCues(colCues, colCuesContainer, 'col');
+        displayCues(rowCues, rowCuesContainer, 'row');
         displayGrid(matrix.length);
     }
 
@@ -88,14 +88,20 @@ document.addEventListener('DOMContentLoaded', () => {
         return cues;
     }
 
-    function displayCues(cues, container) {
+    function displayCues(cues, container, type) {
         container.innerHTML = '';
         cues.forEach(cueLine => {
             const cueContainer = document.createElement('div');
             cueContainer.classList.add('cue-container');
-            const cueSpan = document.createElement('span');
-            cueSpan.textContent = cueLine.join(' ');
-            cueContainer.appendChild(cueSpan);
+            if (type === 'col') {
+                cueLine.forEach(cue => {
+                    const cueSpan = document.createElement('span');
+                    cueSpan.textContent = cue;
+                    cueContainer.appendChild(cueSpan);
+                });
+            } else {
+                cueContainer.textContent = cueLine.join(' ');
+            }
             container.appendChild(cueContainer);
         });
     }
