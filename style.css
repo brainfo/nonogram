@@ -24,17 +24,18 @@ body {
 #col-cues {
     display: flex;
     justify-content: flex-start;
-    padding-left: 95px; /* to align with the grid */
+    padding-left: 100px; /* to align with the grid */
 }
 
 #col-cues .cue-container {
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: center;
     width: 30px;
     padding: 5px;
     box-sizing: border-box;
     font-family: monospace;
+    text-align: center;
 }
 
 #row-cues-and-grid {

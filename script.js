@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const imageLoader = document.getElementById('imageLoader');
     const submitBtn = document.getElementById('submitBtn');
     const saveBtn = document.getElementById('saveBtn');
+    const showSolutionBtn = document.getElementById('showSolutionBtn');
     const gridContainer = document.getElementById('grid');
     const colCuesContainer = document.getElementById('col-cues');
     const rowCuesContainer = document.getElementById('row-cues');
@@ -14,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     imageLoader.addEventListener('change', handleImage, false);
     submitBtn.addEventListener('click', checkSolution);
     saveBtn.addEventListener('click', saveGrid);
+    showSolutionBtn.addEventListener('click', showSolution);
 
     function handleImage(e) {
         const reader = new FileReader();
@@ -198,5 +200,25 @@ document.addEventListener('DOMContentLoaded', () => {
         link.download = 'nonogram.png';
         link.href = canvas.toDataURL();
         link.click();
+    }
+
+    function showSolution() {
+        if (originalMatrix.length === 0) {
+            feedback.textContent = 'Please load an image first.';
+            return;
+        }
+
+        const gridSize = originalMatrix.length;
+        for (let i = 0; i < gridSize; i++) {
+            for (let j = 0; j < gridSize; j++) {
+                const cell = document.querySelector(`.cell[data-row='${i}'][data-col='${j}']`);
+                cell.classList.remove('filled', 'marked');
+                if (originalMatrix[i][j] === 1) {
+                    cell.classList.add('filled');
+                }
+                userMatrix[i][j] = originalMatrix[i][j];
+            }
+        }
+        feedback.textContent = 'Solution displayed.';
     }
 });
