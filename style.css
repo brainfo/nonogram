@@ -34,8 +34,7 @@ body {
 }
 
 #col-cues {
-    display: flex;
-    justify-content: space-around; /* Align with the end of the row cues */
+    display: grid;
     margin-left: auto; /* Push to the right */
     width: calc(100% - 50px); /* Adjust width to align with grid */
 }
@@ -44,8 +43,6 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 5%; /* Responsive width */
-    min-width: 20px; /* Minimum width */
     padding: 5px 0;
     box-sizing: border-box;
     font-family: monospace;

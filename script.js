@@ -54,10 +54,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function generateNonogram(matrix) {
+        const gridSize = matrix.length;
         const colCues = getCues(matrix, 'col');
         const rowCues = getCues(matrix, 'row');
 
-        displayCues(colCues, colCuesContainer, 'col');
+        displayCues(colCues, colCuesContainer, 'col', gridSize);
         displayCues(rowCues, rowCuesContainer, 'row');
         displayGrid(matrix.length);
     }
@@ -90,8 +91,11 @@ document.addEventListener('DOMContentLoaded', () => {
         return cues;
     }
 
-    function displayCues(cues, container, type) {
+    function displayCues(cues, container, type, gridSize = 0) {
         container.innerHTML = '';
+        if (type === 'col') {
+            container.style.gridTemplateColumns = `repeat(${gridSize}, 1fr)`;
+        }
         cues.forEach(cueLine => {
             const cueContainer = document.createElement('div');
             cueContainer.classList.add('cue-container');
