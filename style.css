@@ -10,65 +10,86 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
+    max-width: 800px;
+    padding: 10px;
+    box-sizing: border-box;
 }
 
 .controls {
     margin-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.controls button, .controls input {
+    margin: 5px;
 }
 
 #game-container {
     display: flex;
     flex-direction: column;
+    width: 100%;
 }
 
 #col-cues {
     display: flex;
-    justify-content: flex-start;
-    padding-left: 100px; /* to align with the grid */
+    justify-content: space-around; /* Align with the end of the row cues */
+    margin-left: auto; /* Push to the right */
+    width: calc(100% - 50px); /* Adjust width to align with grid */
 }
 
 #col-cues .cue-container {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 30px;
-    padding: 5px;
+    width: 5%; /* Responsive width */
+    min-width: 20px; /* Minimum width */
+    padding: 5px 0;
     box-sizing: border-box;
     font-family: monospace;
     text-align: center;
+    font-size: 0.8em;
 }
 
 #row-cues-and-grid {
     display: flex;
+    width: 100%;
 }
 
 #row-cues {
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: space-around;
+    width: 50px; /* Fixed width for row cues */
     padding-right: 5px;
+    box-sizing: border-box;
+    height: auto;
 }
 
 #row-cues .cue-container {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    height: 30px;
-    padding: 5px;
-    min-width: 90px;
+    height: 5%; /* Responsive height */
+    min-height: 20px; /* Minimum height */
     text-align: right;
     box-sizing: border-box;
     font-family: monospace;
+    font-size: 0.8em;
 }
 
 #grid {
     display: grid;
     border: 2px solid black;
+    width: calc(100% - 50px);
 }
 
 .cell {
-    width: 30px;
-    height: 30px;
+    width: 100%;
+    padding-top: 100%; /* Maintain aspect ratio 1:1 */
+    position: relative;
     border: 1px solid #ccc;
     box-sizing: border-box;
 }
@@ -79,7 +100,6 @@ body {
 
 .cell.marked {
     background-color: #f0f0f0;
-    position: relative;
 }
 
 .cell.marked::after {
@@ -89,11 +109,26 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     color: red;
-    font-size: 20px;
+    font-size: 2vw;
 }
 
 #feedback {
     margin-top: 20px;
     font-size: 1.2em;
     font-weight: bold;
+}
+
+@media (max-width: 600px) {
+    .controls {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #col-cues .cue-container, #row-cues .cue-container {
+        font-size: 0.7em;
+    }
+
+    .cell.marked::after {
+        font-size: 3vw;
+    }
 }

@@ -110,7 +110,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function displayGrid(size) {
         gridContainer.innerHTML = '';
-        gridContainer.style.gridTemplateColumns = `repeat(${size}, 30px)`;
+        gridContainer.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
+        gridContainer.style.gridTemplateRows = `repeat(${size}, 1fr)`;
         for (let i = 0; i < size; i++) {
             for (let j = 0; j < size; j++) {
                 const cell = document.createElement('div');
